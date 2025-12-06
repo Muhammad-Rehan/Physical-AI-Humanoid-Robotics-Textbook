@@ -1,55 +1,109 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- Sync Impact Report:
+Version change: N/A -> 1.0.0
+List of modified principles:
+  - N/A -> Code Quality Standards
+  - N/A -> Testing Standards
+  - N/A -> User Experience Consistency
+  - N/A -> Performance Requirements
+Added sections: Vision Statement, Implementation Guidelines, Success Metrics
+Removed sections: None
+Templates requiring updates:
+  - .specify/templates/plan-template.md: ✅ updated
+  - .specify/templates/spec-template.md: ⚠ pending
+  - .specify/templates/tasks-template.md: ⚠ pending
+  - .specify/templates/commands/sp.constitution.md: ⚠ pending
+Follow-up TODOs: None
+-->
+# Physical AI & Humanoid Robotics Textbook Constitution
+
+## Vision Statement
+To create an AI-native educational resource that empowers learners to master Physical AI and Humanoid Robotics through accessible, interactive, and technically accurate content that bridges theory with practical application.
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### 1. Code Quality Standards
+All code examples shall follow clean code principles with clear naming conventions
+Implement modular architecture with logical separation of concerns
+Use consistent indentation, formatting, and documentation style throughout
+Provide both simplified educational examples and production-ready implementations
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every code snippet must include comprehensive comments explaining the "why" not just the "what"
+Provide inline documentation for complex algorithms and implementations
+Include expected outputs and common pitfalls for each code example
+Maintain a consistent API documentation format for all custom components
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+Implement semantic versioning for all code examples and libraries
+Maintain clear commit messages following conventional commit standards
+Document breaking changes with migration guides
+Tag all example code with compatible ROS 2, Gazebo, and Isaac Sim versions
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### 2. Testing Standards
+All code examples must be tested in the specified environments (Ubuntu 22.04, ROS 2 Humble/Iron)
+Provide automated tests for critical components and algorithms
+Include hardware compatibility matrices for different robot platforms
+Document performance benchmarks for resource-intensive operations
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+Content must be reviewed by subject matter experts in robotics and AI
+Implement a feedback mechanism for continuous improvement based on learner experiences
+Validate learning outcomes through practical assessments and projects
+Ensure progressive complexity that builds on previous concepts
 
-### [PRINCIPLE_6_NAME]
+Test all RAG chatbot responses against textbook content for accuracy
+Verify that code examples work across different hardware specifications
+Ensure seamless integration between Docusaurus frontend and backend components
+Perform cross-browser and device compatibility testing
 
+### 3. User Experience Consistency
+Implement a consistent information architecture throughout the textbook
+Maintain uniform navigation patterns and content structure
+Provide multiple learning pathways for different backgrounds (software vs. hardware)
+Ensure all content follows the established pedagogical framework
 
-[PRINCIPLE__DESCRIPTION]
+Comply with WCAG 2.1 AA accessibility guidelines
+Provide alternative text descriptions for all visual content
+Ensure keyboard navigation support for all interactive elements
+Implement responsive design for various screen sizes and devices
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Combine textual explanations with visual diagrams, code examples, and videos
+Provide interactive simulations where appropriate to demonstrate concepts
+Include practical exercises that reinforce theoretical knowledge
+Design the RAG chatbot to provide contextual assistance tailored to the current topic
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### 4. Performance Requirements
+Optimize all assets for fast loading without compromising quality
+Implement lazy loading for resource-intensive content
+Ensure the RAG chatbot provides responses within 3 seconds for 95% of queries
+Minimize dependencies to reduce installation complexity for learners
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Provide clear hardware requirements for all examples and projects
+Optimize code examples for performance on specified hardware (RTX GPUs, Jetson platforms)
+Include performance profiling for resource-intensive operations
+Document expected resource utilization for all major components
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Design the RAG system to handle concurrent users efficiently
+Implement caching strategies for frequently accessed content
+Ensure the architecture supports future content expansion
+Design for both local and cloud deployment scenarios
+
+## Implementation Guidelines
+Development Workflow
+All content must be created using Claude Code and structured with Spec-Kit Plus
+Implement continuous integration for automated testing and validation
+Conduct regular reviews to ensure compliance with this constitution
+Maintain a change log documenting all significant modifications
+Quality Assurance
+Establish a review process for all content before publication
+Implement automated checks for code quality and performance
+Conduct user testing with representative learners
+Monitor and address issues reported through the feedback system
+
+## Success Metrics
+Content Quality: Measured through expert reviews and technical accuracy
+User Engagement: Assessed through interaction patterns with the RAG chatbot
+Learning Outcomes: Evaluated through project completion rates and assessment scores
+System Performance: Monitored through response times and resource utilization metrics
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution serves as the foundational document for the "Physical AI & Humanoid Robotics Textbook" project. All development, content creation, and system operations must strictly adhere to the principles and guidelines outlined herein. Amendments to this constitution require careful consideration, documentation, and approval from relevant stakeholders. Compliance will be regularly reviewed to ensure the highest standards of technical excellence and user experience.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-04 | **Last Amended**: 2025-12-04

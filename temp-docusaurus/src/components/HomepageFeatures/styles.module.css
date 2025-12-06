@@ -1,0 +1,78 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureImage {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.featureCard {
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--docusaurus-highlighted-code-line-bg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 3rem;
+  height: 100%; /* Make the card fill the link */
+}
+
+.featureCardLink {
+  text-decoration: none;
+  color: inherit;
+  flex: 1 1 calc(33% - 2rem);
+  margin: 1rem;
+}
+
+.featureCardLink:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.featureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.weeksTagline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-weight: bold;
+}
+
+/* Adjustments for smaller screens */
+@media screen and (max-width: 996px) {
+  .featureCardLink {
+    flex: 1 1 calc(50% - 2rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .featureCardLink {
+    flex: 1 1 calc(100% - 2rem);
+  }
+}
+
+.featuresGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -1rem;
+}
