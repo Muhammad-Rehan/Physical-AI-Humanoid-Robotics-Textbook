@@ -84,16 +84,27 @@
 
 ### Functional Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]  
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST answer questions based only on retrieved textbook chunks
+- **FR-002**: System MUST operate in Selected-Only Mode when user selects text, using only the provided selection as context
+- **FR-003**: System MUST cite source location (chapter/section) for all responses
+- **FR-004**: System MUST return uncertainty message if insufficient information is available
+- **FR-005**: System MUST maintain zero hallucination tolerance
+- **FR-006**: System MUST implement retrieval with chunk size ≈ 500–800 tokens, with small overlap
+- **FR-007**: System MUST store embeddings in Qdrant (Cloud Free Tier)
+- **FR-008**: System MUST retrieve top_k=8 chunks and apply similarity threshold (≥0.78)
+- **FR-009**: System MUST return "Not found in book" if no chunk passes threshold
+- **FR-010**: System MUST use temperature 0–0.2 for factual answers
+- **FR-011**: System MUST provide response format with short answer (1–3 sentences) + optional explanation + sources block
+- **FR-012**: System MUST prepend "Answering from selected text only:" in Selected-Only Mode
+- **FR-013**: System MUST refuse politely if answer requires info not in retrieved context
+- **FR-014**: System MUST include safety reminders for assembly/electronics steps
+- **FR-015**: System MUST show sources with clickable anchors
+- **FR-016**: System MUST provide warnings when content involves hardware or safety
 
 *Example of marking unclear requirements:*
 
-- **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
-- **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+- **FR-017**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
+- **FR-018**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
 
 ### Key Entities *(include if feature involves data)*
 

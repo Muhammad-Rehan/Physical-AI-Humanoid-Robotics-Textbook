@@ -35,6 +35,7 @@
 - **Testing Standards**: All code examples must be tested in specified environments, automated tests for critical components, educational validation, and integration testing.
 - **User Experience Consistency**: Consistent information architecture, accessibility standards (WCAG 2.1 AA), and multimodal learning approach.
 - **Performance Requirements**: Optimized content delivery, computational efficiency, and scalability considerations.
+- **RAG System Integrity Standards**: Zero hallucination tolerance, textbook-only responses, proper source citations, and safety reminders for hardware content.
 
 ## Project Structure
 

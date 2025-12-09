@@ -51,6 +51,9 @@ description: "Task list template for feature implementation"
 - [ ] T001 Create project structure per implementation plan
 - [ ] T002 Initialize [language] project with [framework] dependencies
 - [ ] T003 [P] Configure linting and formatting tools
+- [ ] T004 Setup Qdrant vector database for textbook embeddings
+- [ ] T005 Configure Neon Postgres for metadata storage
+- [ ] T006 Set up environment variables for API keys and database connections
 
 ---
 
@@ -62,12 +65,16 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T007 Setup database schema and migrations framework for metadata
+- [ ] T008 [P] Implement authentication/authorization framework
+- [ ] T009 [P] Setup API routing and middleware structure
+- [ ] T010 Create base models/entities that all stories depend on
+- [ ] T011 Configure error handling and logging infrastructure
+- [ ] T012 Setup environment configuration management
+- [ ] T013 Implement textbook content chunking mechanism (500-800 tokens with overlap)
+- [ ] T014 Create embedding generation and storage pipeline for Qdrant
+- [ ] T015 Implement similarity search with threshold (≥0.78) and top_k=8 retrieval
+- [ ] T016 Create RAG response formatter with source citation capability
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -156,6 +163,13 @@ Examples of foundational tasks (adjust based on your project):
 - [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
+- [ ] TXXX Implement zero hallucination validation tests
+- [ ] TXXX Add response time monitoring (≤3s median, ≤5s p95)
+- [ ] TXXX Create index update mechanism for content changes (minutes for small changes)
+- [ ] TXXX Implement query caching for faster responses
+- [ ] TXXX Add safety reminder system for hardware/electronics content
+- [ ] TXXX Create selected-only mode validation tests
+- [ ] TXXX Implement proper source citation with clickable anchors
 
 ---
 
