@@ -1,0 +1,43 @@
+URL: http://localhost:3000/Physical-AI-Humanoid-Robotics-Textbook/docs/intro/introduction
+TITLE: Introduction to Physical AI & Humanoid Robotics
+CONTENT: Physical AI is a field that combines principles of physics with artificial intelligence to create more robust and efficient AI systems. This approach enables robots to understand and interact with the physical world more effectively. Humanoid robotics focuses on creating robots with human-like characteristics and capabilities.
+
+Physical AI principles include understanding forces, motion, and physical constraints. These principles help AI systems make better decisions when interacting with real-world environments. The combination of physics-based understanding and artificial intelligence leads to more stable and reliable robotic systems.
+
+Humanoid robots are designed to interact with human environments and potentially assist humans in various tasks. They require sophisticated control systems that can handle the complexity of human-like movement and interaction.
+
+Physical AI and humanoid robotics are interconnected fields that advance together. As we develop better physical understanding in AI systems, we can create more capable humanoid robots.
+
+- Physical AI uses physics principles in AI decision-making
+- Humanoid robotics applies these principles to human-like robots
+- Both fields benefit from advances in each other
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+URL: http://localhost:3000/Physical-AI-Humanoid-Robotics-Textbook/docs/physical-fundamentals/physics-concepts
+TITLE: Physics Concepts in Physical AI
+CONTENT: Understanding physics is fundamental to Physical AI. Key concepts include Newton's laws of motion, force dynamics, and energy conservation. These concepts help AI systems predict and respond to physical interactions.
+
+Newton's first law states that an object at rest stays at rest and an object in motion stays in motion unless acted upon by an external force. This principle helps AI systems understand when objects will remain stable or begin moving.
+
+Force dynamics involve understanding how forces interact with objects. This includes concepts like friction, gravity, and applied forces. AI systems use these concepts to predict the outcome of interactions between objects.
+
+Energy conservation is another important concept. AI systems can use energy calculations to understand system behavior and predict future states of physical systems.
+
+Torque and rotational motion are also important for humanoid robotics. Understanding how forces create rotational movement is essential for controlling robot joints and limbs.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+URL: http://localhost:3000/Physical-AI-Humanoid-Robotics-Textbook/docs/humanoid-design/locomotion
+TITLE: Locomotion in Humanoid Robots
+CONTENT: Locomotion is one of the most challenging aspects of humanoid robotics. Creating stable, efficient movement patterns requires understanding both biomechanics and control theory.
+
+Bipedal locomotion involves walking on two legs. This requires maintaining balance while shifting weight from one leg to another. Control systems must constantly adjust to maintain stability.
+
+Dynamic balance involves maintaining stability while in motion. This is more complex than static balance and requires predictive control algorithms that can anticipate balance issues before they occur.
+
+Gait patterns describe the specific movement patterns used in walking. Different gaits are appropriate for different speeds and conditions. Understanding these patterns helps create more natural movement.
+
+Stair climbing presents additional challenges for humanoid robots. The control systems must manage changes in elevation while maintaining balance and ensuring foot placement accuracy.
+
+Walking on uneven terrain requires additional sensory feedback and adaptive control. Robots must detect surface changes and adjust their movement patterns accordingly.

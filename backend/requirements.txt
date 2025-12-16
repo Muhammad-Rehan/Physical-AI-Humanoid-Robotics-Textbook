@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+openai
+qdrant-client
+beautifulsoup4
+requests
+python-dotenv
+google-generativeai
+dashscope
+transformers
+torch
+sentence-transformers
+numpy
