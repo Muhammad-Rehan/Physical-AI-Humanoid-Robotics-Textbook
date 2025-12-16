@@ -142,6 +142,7 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    // Chatbot deployment trigger
   } satisfies Preset.ThemeConfig,
 };
 
