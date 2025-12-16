@@ -36,4 +36,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          cname: ai-robotics-textbook.example.com
+          # cname: ai-robotics-textbook.example.com  # Commented out to use default GitHub Pages URL
