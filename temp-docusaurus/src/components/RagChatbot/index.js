@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import apiService from '../../services/api';
 import './styles.css';
 
 const RagChatbot = () => {
@@ -55,26 +56,8 @@ const RagChatbot = () => {
     setIsLoading(true);
 
     try {
-      // Prepare the request payload
-      const requestBody = {
-        question: inputValue,
-        selected_text: selectedText || null
-      };
-
-      // Send request to backend
-      const response = await fetch('http://localhost:8000/api/v1/chat/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+      // Use the centralized ApiService
+      const data = await apiService.askQuestion(inputValue, selectedText || null);
 
       const botMessage = {
         id: Date.now() + 1,
