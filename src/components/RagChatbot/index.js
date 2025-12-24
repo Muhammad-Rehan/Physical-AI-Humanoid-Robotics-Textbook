@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import apiService from '../../services/api';
 import './styles.css';
 
 const RagChatbot = () => {
@@ -7,7 +8,24 @@ const RagChatbot = () => {
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [selectedText, setSelectedText] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState('en');
   const messagesEndRef = useRef(null);
+
+  // Get user's selected language from localStorage
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+    setSelectedLanguage(savedLanguage);
+
+    // Listen for language change events from other components
+    const handleLanguageChange = (event) => {
+      setSelectedLanguage(event.detail.language);
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange);
+    };
+  }, []);
 
   // Function to get selected text from the page
   const getSelectedText = () => {
@@ -61,26 +79,42 @@ const RagChatbot = () => {
         selected_text: selectedText || null
       };
 
-      // Send request to backend
-      const response = await fetch('http://localhost:8000/api/v1/chat/ask', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody)
-      });
+      // Send request to backend using the apiService
+      const data = await apiService.askQuestion(inputValue, selectedText);
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      // Create the bot message with the response
+      let botMessageText = data.answer;
+      let translatedSources = data.sources;
+
+      // If user has selected a different language, translate the response
+      if (selectedLanguage !== 'en') {
+        try {
+          // Translate the answer
+          const translationResponse = await apiService.translateText(
+            data.answer,
+            selectedLanguage,
+            'en',
+            'chatbot_response'
+          );
+
+          if (translationResponse.translated_text) {
+            botMessageText = translationResponse.translated_text;
+          }
+
+          // Optionally translate source citations (this might not be appropriate for file names/URLs)
+          // For now, we'll keep original source citations to maintain accuracy
+        } catch (translationError) {
+          console.error('Translation error:', translationError);
+          // Use original text if translation fails
+          botMessageText = data.answer;
+        }
       }
-
-      const data = await response.json();
 
       const botMessage = {
         id: Date.now() + 1,
-        text: data.answer,
+        text: botMessageText,
         sender: 'bot',
-        sources: data.sources,
+        sources: translatedSources, // Keep original sources for accuracy
         timestamp: new Date()
       };
 

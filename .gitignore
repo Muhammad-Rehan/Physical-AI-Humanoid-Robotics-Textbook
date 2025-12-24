@@ -6,6 +6,37 @@ yarn-error.log*
 .pnp/
 .pnp.js
 
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+.cov/
+.coverage.*
+.coverage.xml
+
 # Docusaurus
 .docusaurus/
 build/
@@ -41,6 +72,7 @@ out/
 .idea/
 *.tgz
 .swc/
+NUL
 
 # Project-specific ignored files
 CLAUDE.md

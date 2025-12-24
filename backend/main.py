@@ -3,8 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 
-# Import the chat router
+# Import the chat and translation routers
 from src.api.v1.endpoints.chat import router as chat_router
+from src.api.v1.translation import router as translation_router
 
 # Load environment variables from .env file
 load_dotenv()
@@ -24,8 +25,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Include the chat router
+# Include the chat and translation routers
 app.include_router(chat_router, prefix="/api/v1")
+app.include_router(translation_router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():
