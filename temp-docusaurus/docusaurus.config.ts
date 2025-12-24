@@ -60,7 +60,7 @@ const config: Config = {
       title: 'Physical AI & Humanoid Robotics',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.png',
+        src: '/img/logo.png',
       },
       items: [
         {
