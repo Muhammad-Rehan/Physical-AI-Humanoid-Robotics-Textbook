@@ -27,9 +27,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ./temp-docusaurus
 
       - name: Build Docusaurus website
         run: yarn build
+        working-directory: ./temp-docusaurus
         env:
           REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
 
@@ -37,5 +39,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./temp-docusaurus/build
           # cname: ai-robotics-textbook.example.com  # Commented out to use default GitHub Pages URL
