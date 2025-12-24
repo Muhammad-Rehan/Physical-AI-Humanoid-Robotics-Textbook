@@ -1,0 +1,103 @@
+.language-selector {
+  position: relative;
+  display: inline-block;
+}
+
+.language-selector-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #011627;
+  border: 1px solid #dee2e6;
+  border-radius: 20px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff; /* White text for contrast */
+  transition: all 0.2s ease;
+}
+
+.language-selector-button:hover {
+  background-color: #02213c; /* Slightly lighter shade of the primary color */
+  border-color: #adb5bd;
+}
+
+.language-flag {
+  font-size: 16px;
+}
+
+.language-name {
+  font-weight: 500;
+}
+
+.dropdown-arrow {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.language-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 240px;
+  background-color: #2a4053; /* Slightly different shade for dropdown background */
+  border: 1px solid #dee2e6;
+  border-radius: 8px; /* More rounded for consistency */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+  margin-top: 4px;
+}
+
+.language-search {
+  padding: 8px;
+  border-bottom: 1px solid #3a5a6a; /* Match the new color scheme */
+}
+
+.language-search-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #4a6070; /* Darker border for contrast */
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #203546; /* Darker background for contrast */
+  color: #ffffff; /* White text for contrast */
+}
+
+.language-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #2F4858; /* New dropdown item background color */
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+  color: #ffffff; /* White text for contrast */
+}
+
+.language-option:hover {
+  background-color: #3a5a6a; /* Slightly lighter shade of the dropdown color */
+}
+
+.language-option.selected {
+  background-color: #3a5a6a; /* Consistent with hover state */
+  font-weight: 500;
+}
+
+.selected-check {
+  margin-left: auto;
+  color: #ffffff; /* White for better contrast */
+}
+
+@media (max-width: 768px) {
+  .language-dropdown {
+    width: 200px;
+  }
+}

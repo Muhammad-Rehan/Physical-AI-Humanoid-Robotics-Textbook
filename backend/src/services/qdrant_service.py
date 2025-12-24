@@ -50,7 +50,7 @@ class QdrantService:
                 results = []
                 for hit in search_results.points:
                     result = {
-                        'text': hit.payload.get('text', '') if hit.payload else '',
+                        'text': (hit.payload.get('content', '') if hit.payload else '') or (hit.payload.get('text', '') if hit.payload else ''),
                         'url': hit.payload.get('url', '') if hit.payload else '',
                         'title': hit.payload.get('title', '') if hit.payload else '',
                         'word_count': hit.payload.get('word_count', 0) if hit.payload else 0,
@@ -72,7 +72,7 @@ class QdrantService:
                 results = []
                 for hit in search_results:
                     result = {
-                        'text': hit.payload.get('text', ''),
+                        'text': hit.payload.get('content', '') or hit.payload.get('text', ''),  # 'content' is what we stored
                         'url': hit.payload.get('url', ''),
                         'title': hit.payload.get('title', ''),
                         'word_count': hit.payload.get('word_count', 0),
@@ -91,11 +91,21 @@ class QdrantService:
         Get information about the collection
         """
         try:
+            # First check if collection exists
             collection_info = self.client.get_collection(self.collection_name)
+
+            # Newer Qdrant versions have different attribute names
+            try:
+                # Try newer API structure first
+                vectors_count = collection_info.points_count
+            except AttributeError:
+                # Fall back to older API structure
+                vectors_count = collection_info.vectors_count
+
             return {
-                'name': collection_info.config.params.vectors.size,
-                'vectors_count': collection_info.vectors_count,
-                'indexed_vectors_count': collection_info.indexed_vectors_count
+                'name': self.collection_name,
+                'vectors_count': vectors_count,
+                'indexed_vectors_count': getattr(collection_info, 'indexed_vectors_count', vectors_count)  # May not be available in all versions
             }
         except Exception as e:
             print(f"Error getting collection info: {e}")

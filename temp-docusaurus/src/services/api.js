@@ -1,5 +1,8 @@
 // API service for communicating with the RAG backend
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api/v1';
+// Using window global to avoid process.env issues in Docusaurus
+const API_BASE_URL = typeof window !== 'undefined'
+  ? (window.API_BASE_URL || 'http://localhost:8000/api/v1')
+  : 'http://localhost:8000/api/v1';
 
 class ApiService {
   constructor() {
@@ -31,6 +34,34 @@ class ApiService {
     }
   }
 
+  // Translate text using the translation API
+  async translateText(text, targetLanguage, sourceLanguage = 'en', context = 'page_content') {
+    try {
+      const response = await fetch(`${this.baseUrl}/translate`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          text,
+          target_language: targetLanguage,
+          source_language: sourceLanguage,
+          context
+        })
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error('Error in translateText:', error);
+      throw error;
+    }
+  }
+
   // Health check for the API
   async healthCheck() {
     try {
@@ -38,6 +69,17 @@ class ApiService {
       return await response.json();
     } catch (error) {
       console.error('Error in healthCheck:', error);
+      throw error;
+    }
+  }
+
+  // Health check for the translation API
+  async translationHealthCheck() {
+    try {
+      const response = await fetch(`${this.baseUrl}/health`);
+      return await response.json();
+    } catch (error) {
+      console.error('Error in translationHealthCheck:', error);
       throw error;
     }
   }
