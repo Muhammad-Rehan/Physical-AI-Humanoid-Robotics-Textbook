@@ -34,8 +34,8 @@ class ApiService {
     }
   }
 
-  // Translate text using the translation API
-  async translateText(text, targetLanguage, sourceLanguage = 'en', context = 'page_content') {
+  // Translate a batch of texts using the translation API
+  async translateText(texts, targetLanguage, sourceLanguage = 'en', context = 'page_content') {
     try {
       const response = await fetch(`${this.baseUrl}/translate`, {
         method: 'POST',
@@ -43,7 +43,7 @@ class ApiService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          text,
+          texts,
           target_language: targetLanguage,
           source_language: sourceLanguage,
           context
@@ -52,7 +52,7 @@ class ApiService {
 
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+        throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
       }
 
       return await response.json();
