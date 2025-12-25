@@ -19,10 +19,10 @@ class TranslationEngine(str, Enum):
 
 class TranslationRequest(BaseModel):
     """Model for translation requests"""
-    text: str = Field(
+    texts: List[str] = Field(
         ...,
-        description="The source text to be translated",
-        max_length=10000
+        description="A list of source texts to be translated",
+        max_length=1000
     )
     target_language: str = Field(
         ...,
@@ -44,9 +44,9 @@ class TranslationRequest(BaseModel):
 
 class TranslationResponse(BaseModel):
     """Model for translation responses"""
-    translated_text: str = Field(
+    translated_texts: List[str] = Field(
         ...,
-        description="The translated text"
+        description="The list of translated texts"
     )
     source_language: str = Field(
         ...,
@@ -61,12 +61,6 @@ class TranslationResponse(BaseModel):
     translation_engine: TranslationEngine = Field(
         ...,
         description="Which engine was used for translation"
-    )
-    confidence: Optional[float] = Field(
-        None,
-        description="Confidence score of the translation (0.0-1.0)",
-        ge=0.0,
-        le=1.0
     )
     is_machine_translated: bool = Field(
         True,
