@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import './LanguageSelector.css';
 
 const LANGUAGES = [
@@ -16,7 +17,7 @@ const LANGUAGES = [
   { code: 'ur', name: 'Urdu' }
 ];
 
-const LanguageSelector = ({ onLanguageChange, currentLanguage }) => {
+const LanguageSelectorImpl = ({ onLanguageChange, currentLanguage }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(() => {
     // Get saved language from localStorage or use currentLanguage prop or default to 'en'
     return localStorage.getItem('preferredLanguage') || currentLanguage || 'en';
@@ -109,6 +110,14 @@ const getFlagEmoji = (languageCode) => {
     'ur': '🇵🇰'
   };
   return flags[languageCode] || '🌐';
+};
+
+const LanguageSelector = (props) => {
+  return (
+    <BrowserOnly>
+      {() => <LanguageSelectorImpl {...props} />}
+    </BrowserOnly>
+  );
 };
 
 export default LanguageSelector;
