@@ -1,8 +1,6 @@
 // API service for communicating with the RAG backend
 // Using window global to avoid process.env issues in Docusaurus
-const API_BASE_URL = typeof window !== 'undefined'
-  ? (window.API_BASE_URL || 'http://localhost:8000/api/v1')
-  : 'http://localhost:8000/api/v1';
+const API_BASE_URL = 'https://muhammad1r-rag-chatbot.hf.space/api/v1';
 
 class ApiService {
   constructor() {
