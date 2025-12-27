@@ -5,40 +5,153 @@
  */
 
 /* You can override the default Infima variables here. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
+  /* Colors - New Palette */
+  --ifm-color-primary: #c34a36; /* Deep red/orange */
+  --ifm-color-primary-dark: #A63E2D; /* Derived darker */
+  --ifm-color-primary-darker: #903427;
+  --ifm-color-primary-darkest: #7A2C21;
+  --ifm-color-primary-light: #D95540; /* Derived lighter */
+  --ifm-color-primary-lighter: #E2604B;
+  --ifm-color-primary-lightest: #EB6B56;
+  --ifm-color-secondary: #ff7c60; /* Lighter, vibrant orange/red */
+  --ifm-text-color: #000000; /* Dark black for text */
+  --ifm-background-color: #ede9d0; /* Light, warm beige */
+  --ifm-card-background-color: #3a001e; /* Card background color */
+  --ifm-card-text-color: #ffffff; /* White text for dark card background */
+  --ifm-link-color: var(--ifm-color-primary);
+
+  /* Fonts */
+  --ifm-font-family-base: 'Inter', sans-serif;
+  --ifm-font-family-headings: 'Inter', sans-serif; /* Using Inter for headings too */
+  --ifm-code-font-size: 90%; /* Slightly smaller code font */
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  /* Dark mode colors - harmonizing with new palette */
+  --ifm-color-primary: #ff7c60; /* Use lighter orange as primary in dark mode */
+  --ifm-color-primary-dark: #cc634d;
+  --ifm-color-primary-darker: #b35744;
+  --ifm-color-primary-darkest: #994c3c;
+  --ifm-color-primary-light: #ff917a;
+  --ifm-color-primary-lighter: #ffa693;
+  --ifm-color-primary-lightest: #ffbbac;
+  --ifm-text-color: #e0e0e0; /* Light gray text for dark mode */
+  --ifm-background-color: #2c1a16; /* Very dark brown/red for dark background */
+  --ifm-card-background-color: #1a000f; /* Even darker card background color in dark mode */
+  --ifm-card-text-color: #f0f0f0; /* Light text for dark card background */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
+html {
+  height: 100%;
+  /* Light mode new palette gradient */
+  background: linear-gradient(to right, #ede9d0, #ff7c60); /* Light beige to vibrant orange */
+  background-attachment: fixed;
+}
+
+[data-theme='dark'] html {
+  height: 100%;
+  /* Dark mode new palette gradient */
+  background: linear-gradient(to right, #2c1a16, #7a2c21); /* Very dark brown to deep red */
+  background-attachment: fixed;
+}
+
+body {
+  font-family: var(--ifm-font-family-base);
+  color: var(--ifm-text-color);
+  background-color: transparent; /* Make body background transparent */
+  height: 100%; /* Ensure body takes full height */
+  margin: 0; /* Remove default margin */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--ifm-font-family-headings);
+  color: var(--ifm-heading-color); /* Infima variable for heading color */
+}
+
+/* Hero Section Enhancements */
 .hero__title {
   font-size: 3.5rem; /* Make the title bigger */
   line-height: 1.2;
-}
-
-.hero__title span {
-  color: #111111; /* Very dark gray (almost black) as requested by the user */
+  color: var(--ifm-text-color); /* Explicitly set to text color */
 }
 
 .hero__subtitle {
   font-size: 1.5rem; /* Adjust subtitle size */
   margin-top: 1rem; /* Add space between title and subtitle */
+  color: var(--ifm-text-color); /* Ensure hero subtitle uses text color */
+}
+
+/* Remove the span specific color, let it inherit */
+.hero__title span {
+  color: inherit;
+}
+
+/* Global button styling for a modern look */
+.button {
+  border-radius: 8px; /* Slightly rounded corners */
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+
+.button--primary {
+  background-color: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+}
+
+.button--primary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  border-color: var(--ifm-color-primary-dark);
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Card styling */
+.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease-in-out;
+  background-color: var(--ifm-card-background-color); /* Apply card background */
+  color: var(--ifm-card-text-color); /* Apply card text color */
+}
+
+.card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-3px);
+}
+
+/* Navbar adjustments */
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for navbar */
+  background-color: #ff856b; /* New navbar background color */
+  color: #3e2723; /* Dark text for contrast */
+}
+
+/* Ensure navbar links also have appropriate color */
+.navbar__link,
+.navbar__title {
+  color: #3e2723; /* Dark text for links and title */
+}
+
+/* Footer adjustments */
+.footer {
+  background-color: #ff856b; /* Same as navbar background color */
+  color: #3e2723; /* Same as navbar text color */
+  border-top: 1px solid #eee; /* Subtle border */
+}
+
+.footer a,
+.footer p,
+.footer li {
+  color: #3e2723; /* Ensure all footer text elements have the same dark text color */
+}
+
+/* Make hero section background transparent to allow global gradient */
+.hero {
+  background-color: transparent;
 }
