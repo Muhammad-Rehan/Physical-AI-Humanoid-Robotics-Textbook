@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 20px;
   right: 20px;
-  z-index: 1000;
+  z-index: 9999; /* Increased z-index */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -10,26 +10,45 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #007cba;
-  color: white;
+  background-color: var(--ifm-color-primary); /* Use theme primary color */
+  color: white; /* Explicitly white for contrast */
   border: none;
   font-size: 24px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; /* Ensures content is centered */
+  align-items: center; /* Vertically center */
+  justify-content: center; /* Horizontally center */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
+  visibility: visible !important; /* Ensure visibility */
+  opacity: 1 !important; /* Ensure opaque */
 }
 
 .chatbot-toggle:hover {
-  background-color: #005a87;
+  background-color: var(--ifm-color-primary-dark); /* Use theme primary dark color */
   transform: scale(1.05);
 }
 
 .chatbot-toggle.open {
-  border-radius: 12px;
+  position: absolute; /* Position relative to .chatbot-header */
+  right: 10px; /* Offset from right edge of header */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for button height */
+  width: 30px; /* Smaller 'X' button */
+  height: 30px;
+  font-size: 20px; /* Adjust font size for 'X' */
+  border-radius: 50%; /* Keep it circular */
+  background-color: rgba(255, 255, 255, 0.2); /* Subtle background for 'X' */
+  color: white; /* White 'X' */
+  box-shadow: none; /* No shadow for small 'X' button */
+  z-index: 1; /* Within header, doesn't need super high z-index */
 }
+
+.chatbot-toggle.open:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1); /* Subtle hover effect */
+}
+
 
 .chatbot-window {
   width: 380px;
@@ -44,11 +63,13 @@
 }
 
 .chatbot-header {
-  background-color: #007cba;
+  background-color: var(--ifm-color-primary); /* Use theme primary color */
   color: white;
   padding: 16px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; /* Space out items */
+  align-items: center; /* Vertically center items */
+  position: relative; /* For absolute positioning of close button */
 }
 
 .chatbot-header h3 {
@@ -100,7 +121,7 @@
 
 .user-message {
   align-self: flex-end;
-  background-color: #007cba;
+  background-color: var(--ifm-color-primary); /* Use theme primary color */
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -170,12 +191,12 @@
 }
 
 .chatbot-input-area textarea:focus {
-  border-color: #007cba;
-  box-shadow: 0 0 0 2px rgba(0, 124, 186, 0.25);
+  border-color: var(--ifm-color-primary); /* Use theme primary color */
+  box-shadow: 0 0 0 2px rgba(var(--ifm-color-primary-rgb), 0.25);
 }
 
 .send-button {
-  background-color: #007cba;
+  background-color: var(--ifm-color-primary); /* Use theme primary color */
   color: white;
   border: none;
   border-radius: 18px;
@@ -191,7 +212,7 @@
 }
 
 .send-button:not(:disabled):hover {
-  background-color: #005a87;
+  background-color: var(--ifm-color-primary-dark); /* Use theme primary dark color */
 }
 
 /* Responsive design */
@@ -202,7 +223,40 @@
   }
 
   .chatbot-window {
-    width: 320px;
-    height: 450px;
+    width: calc(100vw - 30px); /* Slightly less padding */
+    height: calc(100vh - 30px); /* Make it fill almost entire screen */
+    position: fixed;
+    top: 15px; /* From top edge */
+    right: 15px; /* From right edge */
+    bottom: 15px; /* From bottom edge */
+    left: 15px; /* From left edge */
+    margin: 0;
+    border-radius: 12px;
   }
+
+  .chatbot-header {
+    /* Keep existing styles, ensure its background */
+    background-color: var(--ifm-color-primary);
+  }
+}
+
+/* Tooltip for selected text */
+.selection-tooltip {
+  position: fixed; /* Keep fixed for viewport-relative positioning */
+  background-color: var(--ifm-color-primary); /* Use theme primary color */
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 9999; /* Ensure it's above other content */
+  white-space: nowrap; /* Prevent text wrapping */
+  opacity: 0.95; /* Slightly transparent */
+  transition: opacity 0.2s;
+}
+
+.selection-tooltip:hover {
+  opacity: 1;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }

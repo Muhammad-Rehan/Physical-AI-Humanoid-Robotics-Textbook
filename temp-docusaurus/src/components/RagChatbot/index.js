@@ -2,36 +2,25 @@ import React, { useState, useEffect, useRef } from 'react';
 import apiService from '../../services/api';
 import './styles.css';
 
-const RagChatbot = () => {
+const RagChatbot = ({ initialValue, selectedText, clearInitialValue }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedText, setSelectedText] = useState('');
   const messagesEndRef = useRef(null);
+  const inputRef = useRef(null);
 
-  // Function to get selected text from the page
-  const getSelectedText = () => {
-    const text = window.getSelection().toString().trim();
-    return text;
-  };
-
-  // Handle text selection on the page
   useEffect(() => {
-    const handleSelection = () => {
-      const text = getSelectedText();
-      if (text) {
-        setSelectedText(text);
-      }
-    };
+    if (initialValue) {
+      setInputValue(initialValue);
+      setIsOpen(true);
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
+      clearInitialValue();
+    }
+  }, [initialValue, clearInitialValue]);
 
-    document.addEventListener('mouseup', handleSelection);
-    return () => {
-      document.removeEventListener('mouseup', handleSelection);
-    };
-  }, []);
-
-  // Auto-scroll to bottom of messages
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
@@ -50,14 +39,12 @@ const RagChatbot = () => {
       timestamp: new Date()
     };
 
-    // Add user message to chat
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      // Use the centralized ApiService
-      const data = await apiService.askQuestion(inputValue, selectedText || null);
+      const data = await apiService.askQuestion(inputValue, selectedText);
 
       const botMessage = {
         id: Date.now() + 1,
@@ -93,27 +80,27 @@ const RagChatbot = () => {
 
   return (
     <div className="rag-chatbot">
-      {/* Chatbot toggle button */}
-      <button
-        className={`chatbot-toggle ${isOpen ? 'open' : ''}`}
-        onClick={toggleChat}
-        aria-label={isOpen ? "Close chat" : "Open chat"}
-      >
-        {isOpen ? '×' : '?'}
-      </button>
+      {!isOpen && (
+        <button
+          className="chatbot-toggle"
+          onClick={toggleChat}
+          aria-label="Open chat"
+        >
+          ?
+        </button>
+      )}
 
-      {/* Chatbot window */}
       {isOpen && (
         <div className="chatbot-window">
           <div className="chatbot-header">
             <h3>Textbook Assistant</h3>
-            {selectedText && (
-              <div className="selected-text-indicator">
-                <span title={selectedText}>
-                  {selectedText.length > 50 ? selectedText.substring(0, 50) + '...' : selectedText}
-                </span>
-              </div>
-            )}
+            <button
+              className="chatbot-toggle open"
+              onClick={toggleChat}
+              aria-label="Close chat"
+            >
+              ×
+            </button>
           </div>
 
           <div className="chatbot-messages">
@@ -121,9 +108,6 @@ const RagChatbot = () => {
               <div className="welcome-message">
                 <p>Hello! I'm your textbook assistant.</p>
                 <p>You can ask me questions about the Physical AI & Humanoid Robotics content.</p>
-                {selectedText && (
-                  <p><em>Selected text mode: I'll answer based only on the highlighted text.</em></p>
-                )}
               </div>
             ) : (
               messages.map((message) => (
@@ -158,12 +142,11 @@ const RagChatbot = () => {
 
           <div className="chatbot-input-area">
             <textarea
+              ref={inputRef}
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder={selectedText
-                ? "Ask about the selected text..."
-                : "Ask a question about the textbook content..."}
+              placeholder="Ask a question about the textbook content..."
               rows="2"
               disabled={isLoading}
             />
